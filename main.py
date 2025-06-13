@@ -26,6 +26,9 @@ kb.consult("family_tree.kb")
 
 @tool
 def query_knowledge_base(query: str) -> str:
+    """
+    Query the Prolog knowledge base using a Prolog query like 'grandfather(X, bill)' and return the results.
+    """
     try:
         results = list(kb.query(query))
         if results:
@@ -34,6 +37,15 @@ def query_knowledge_base(query: str) -> str:
             return "No results found for the query."
     except Exception as e:
         return f"Error executing query: {str(e)}"
+    
+@tool
+def judge_relevance(context: str) -> str:
+    """
+    Judges whether retrieved context is relevant.
+    """
+    if "Retrieved context" in context:
+        return "relevant"
+    return "irrelevant"
 
 tools = [query_knowledge_base, retrieve_context_rag]
 model = init_chat_model("gpt-4o-mini", model_provider="openai").bind_tools(tools)
