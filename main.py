@@ -112,7 +112,7 @@ app = graph_builder.compile()
 
 if __name__ == "__main__":
     initial_state = {
-        "input": "Who is the grandfather of joe?",
+        "input": "Who is the grandfather of bill?",
         "messages": [],
         "response": None
     }
